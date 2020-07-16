@@ -22,7 +22,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);  
   var db=firebase.database();
 export function exportToFirebase (data){
-  db.ref("/").set(data);
+  db.ref('/mindmap/').push({雞雞:data});
 };
 
 export function generateSimpleModel() {
@@ -33,7 +33,7 @@ export function generateSimpleModel() {
     topics: [
       {
         key: rootKey,
-        blocks: [{ type: "CONTENT", data: "MainTopic" }]
+        blocks: [{ type: "CONTENT", data: "Mindustry" }]
       }
     ]
   });

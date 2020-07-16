@@ -163,5 +163,8 @@
   },
   "description": "This is a online mindmap app using [blink-mind](https://github.com/awehook/blink-mind) library.",
   "main": "index.js",
-  "author": ""
+  "author": "",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  
+
 }
