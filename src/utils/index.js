@@ -21,8 +21,11 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);  
   var db=firebase.database();
-export function exportToFirebase (data){
-  db.ref('/mindmap/').push({雞雞:data});
+
+export function exportToFirebase (title,data){ 
+  toString(title);
+  db.ref('/mindmap/'+title).update(data);
+  //db.ref('/mindmap/AI').push(data);
 };
 
 export function generateSimpleModel() {

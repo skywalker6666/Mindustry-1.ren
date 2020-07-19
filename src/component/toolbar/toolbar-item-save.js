@@ -12,12 +12,11 @@ export function ToolbarItemSave(props) {
     const jsonStr = JSON.stringify(json);
     const jsonExport = JSON.parse(jsonStr);
     // const url = `data:text/plain,${encodeURIComponent(jsonStr)}`;
-    // const title = controller.run("getTopicTitle", {
-    //   ...diagramProps,
-    //   topicKey: model.rootTopicKey
-    // });
-    
-    exportToFirebase(jsonExport);
+    const title = controller.run("getTopicTitle", {
+       ...diagramProps,
+      topicKey: model.rootTopicKey
+     });
+    exportToFirebase(`${title}`,jsonExport);
 
     
   };

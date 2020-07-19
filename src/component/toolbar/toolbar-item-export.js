@@ -3,7 +3,8 @@ import { iconClassName } from "@blink-mind/renderer-react";
 import { Menu, MenuDivider, MenuItem, Popover } from "@blueprintjs/core";
 import React from "react";
 import { downloadFile } from "../../utils";
-import { exportToFirebase } from "../../utils";
+
+
 export function ToolbarItemExport(props) {
   const onClickExportJson = e => {
     const { diagram } = props;
@@ -17,18 +18,16 @@ export function ToolbarItemExport(props) {
     const title = controller.run("getTopicTitle", {
       ...diagramProps,
       topicKey: model.rootTopicKey
-    });
-    downloadFile(url, `${title}.blinkmind`)
-    exportToFirebase(jsonExport);
-    
-  };
+    });    
+    downloadFile(url, `${title}.mindustry`);
+    };
 
   return (
     <div className={cx("bm-toolbar-item", iconClassName("export"))}>
       <Popover enforceFocus={false}>
         <div className="bm-toolbar-popover-target" />
         <Menu>
-          <MenuItem text="JSON(.blinkmind/.json)" onClick={onClickExportJson} />
+          <MenuItem text="JSON(.mindustry/.blinkmind/.json)" onClick={onClickExportJson} />
           <MenuDivider/>
         </Menu>
       </Popover>
