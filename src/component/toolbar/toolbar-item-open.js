@@ -19,22 +19,38 @@ export function ToolbarItemOpen(props) {
     var map_name=[];
     map_name= loadFileNameFromFirebase();
     
-    for(var x in map_name){
-      console.log(map_name[x]);
+    for(var t in map_name){
+      console.log(map_name[t]);
+    }
+
+    
+    var x = document.getElementById('MenuItem1');
+ 
+  
+    for(var t in map_name){
+      x.innerHTML += "<option value='+"+map_name[t]+"'>"+map_name[t]+"</option>";
     }
     
   };
   
   return (
     <div className={`bm-toolbar-item ${iconClassName("openfile")}`} >
+
       <Popover enforceFocus={false}>
         <div className="bm-toolbar-popover-target" />
         <Menu>
-          <MenuItem text="Open file online" onClick={OpenFileListOnline}/>          
+          
+          <form>
+            <select id="MenuItem1" text="Open file online" onClick={OpenFileListOnline}>
+            　<option value="Taipei">Open file online</option>
+            　
+            </select>
+          </form>
           <MenuDivider/>
           <MenuItem text="Open file from desktop" onClick={onClickOpenFileFromDesktop} />
           <MenuDivider/>
         </Menu>
+        
       </Popover>
     </div>
   );
