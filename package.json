@@ -15,7 +15,7 @@
     "@blueprintjs/core": "^3.17.2",
     "classnames": "^2.2.6",
     "cross-env": "^6.0.3",
-    "firebase": "^7.15.5",
+    "firebase": "^7.16.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "styled-components": "^4.4.1"
@@ -164,7 +164,7 @@
   "description": "This is a online mindmap app using [blink-mind](https://github.com/awehook/blink-mind) library.",
   "main": "index.js",
   "author": "",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
-  
-
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

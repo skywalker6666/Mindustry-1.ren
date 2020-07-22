@@ -21,7 +21,7 @@ export function ToolbarItemExport(props) {
     });    
     downloadFile(url, `${title}.mindustry`);
     };
-
+    
   return (
     <div className={cx("bm-toolbar-item", iconClassName("export"))}>
       <Popover enforceFocus={false}>

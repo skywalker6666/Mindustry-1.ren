@@ -1,7 +1,6 @@
 import { Model, createKey } from "@blink-mind/core";
 import firebase from'firebase';
 
-
 export const downloadFile = (url, filename) => {
   const link = document.createElement("a");
   link.href = url;
@@ -20,14 +19,23 @@ var firebaseConfig = {
   measurementId: "G-BDWX6YGSC5"
 };
 firebase.initializeApp(firebaseConfig);  
-  var db=firebase.database();
+var db=firebase.database();
 
-export function exportToFirebase (title,data){ 
-  toString(title);
+export function exportToFirebase (title,data){   
   db.ref('/mindmap/'+title).update(data);
   //db.ref('/mindmap/AI').push(data);
 };
-
+export function loadFileNameFromFirebase(){
+  var filename_object=[];
+  var x;
+  db.ref('/').on('value',e => {    
+    for(x in e.val()){
+      filename_object=Object.keys(e.val()[x]);
+    }
+    
+  });
+  return(filename_object);
+}
 export function generateSimpleModel() {
   const rootKey = createKey();
 
