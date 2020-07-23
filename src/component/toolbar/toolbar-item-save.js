@@ -3,7 +3,7 @@ import { iconClassName } from "@blink-mind/renderer-react";
 import React from "react";
 import { exportToFirebase } from "../../utils";
 import { loadFileNameFromFirebase } from "../../utils";
-
+import { returnNodeName } from "../../utils";
 export function ToolbarItemSave(props) {
   const onClickSaveJson = e => {
     const { diagram } = props;
@@ -19,6 +19,7 @@ export function ToolbarItemSave(props) {
       topicKey: model.rootTopicKey
      });
     exportToFirebase(`${title}`,jsonExport);
+    returnNodeName(`${title}`);
     
   };
 

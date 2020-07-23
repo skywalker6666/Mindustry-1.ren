@@ -28,13 +28,26 @@ export function exportToFirebase (title,data){
 export function loadFileNameFromFirebase(){
   var filename_object=[];
   var x;
-  db.ref('/').on('value',e => {    
-    for(x in e.val()){
-      filename_object=Object.keys(e.val()[x]);
+  
+  const fetchData=db.ref('/');
+  // fetchData.off();   
+  fetchData.on('value',function(snapshot){    
+    
+    for(x in snapshot.val()){
+      filename_object=Object.keys(snapshot.val()[x]);
     }
     
   });
   return(filename_object);
+}
+export function returnNodeName(map_name){
+  var i;
+  db.ref('/mindmap/'+map_name+'/topics/').on('value',function(snapshot){
+    console.log(snapshot.val());
+    i=snapshot.val();
+  }
+  );
+  return(i);
 }
 export function generateSimpleModel() {
   const rootKey = createKey();

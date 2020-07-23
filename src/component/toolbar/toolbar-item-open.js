@@ -15,33 +15,30 @@ export function ToolbarItemOpen(props) {
       diagram.openNewModel(model);
     });
   };
-  const OpenFileListOnline = e => {    
+  const OpenFileListOnline = e => {   
+    const { diagram } = props;
+    const diagramProps = diagram.getDiagramProps();
+    const { controller } = diagramProps; 
     var map_name=[];
-    map_name= loadFileNameFromFirebase();
-    
-    for(var t in map_name){
-      console.log(map_name[t]);
-    }
-
-    
+    map_name= loadFileNameFromFirebase();    
     var x = document.getElementById('MenuItem1');
  
   
     for(var t in map_name){
-      x.innerHTML += "<option value='+"+map_name[t]+"'>"+map_name[t]+"</option>";
+      x.innerHTML += "<option value='"+map_name[t]+"'>"+map_name[t]+"</option>";
     }
     
   };
   
   return (
-    <div className={`bm-toolbar-item ${iconClassName("openfile")}`} >
+    <div className={`bm-toolbar-item ${iconClassName("openfile")}`}  >
 
       <Popover enforceFocus={false}>
         <div className="bm-toolbar-popover-target" />
         <Menu>
           
           <form>
-            <select id="MenuItem1" text="Open file online" onClick={OpenFileListOnline}>
+            <select id="MenuItem1" text="Open file online" onClick={OpenFileListOnline} >
             　<option value="Taipei">Open file online</option>
             　
             </select>
@@ -50,7 +47,6 @@ export function ToolbarItemOpen(props) {
           <MenuItem text="Open file from desktop" onClick={onClickOpenFileFromDesktop} />
           <MenuDivider/>
         </Menu>
-        
       </Popover>
     </div>
   );
