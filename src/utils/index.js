@@ -41,10 +41,41 @@ export function loadFileNameFromFirebase(){
   return(filename_object);
 }
 export function returnNodeName(map_name){
-  var i;
-  db.ref('/mindmap/'+map_name+'/topics/').on('value',function(snapshot){
-    console.log(snapshot.val());
-    i=snapshot.val();
+  var i=[];
+  var focusKey;
+  db.ref('/mindmap/'+map_name+'/focusKey').on('value',function(snapshot){ focusKey=snapshot.val();});
+  db.ref('/mindmap/'+map_name+'/topics/').on('value',function(snapshot2){
+    for(var x in snapshot2.val()){
+    //   console.log(snapshot.val());
+    // console.log(snapshot.val()[x].blocks[0].data);
+      if(focusKey===snapshot2.val()[x].key){
+        i=snapshot2.val()[x].blocks[0].data;
+        console.log(i);
+      }
+      
+    }
+    
+
+  }
+  );
+  return(i);
+}
+export function returnNoteContent(map_name){
+  var i=[];
+  var focusKey;
+  db.ref('/mindmap/'+map_name+'/focusKey').on('value',function(snapshot){ focusKey=snapshot.val();});
+  db.ref('/mindmap/'+map_name+'/topics/').on('value',function(snapshot2){
+    for(var x in snapshot2.val()){
+    //   console.log(snapshot.val());
+    // console.log(snapshot.val()[x].blocks[0].data);
+      if(focusKey===snapshot2.val()[x].key){
+        i=snapshot2.val()[x].blocks[1].data;
+        console.log(i);
+      }
+      
+    }
+    
+
   }
   );
   return(i);

@@ -22,6 +22,7 @@ export function ToolbarItemOpen(props) {
     var map_name=[];
     map_name= loadFileNameFromFirebase();    
     var x = document.getElementById('MenuItem1');
+    x.innerHTML = "<select data-size='5' id='MenuItem1' text='Open file online' onClick={OpenFileListOnline} ><option value='Taipei'>Open file online</option></select>";
  
   
     for(var t in map_name){
@@ -38,7 +39,7 @@ export function ToolbarItemOpen(props) {
         <Menu>
           
           <form>
-            <select id="MenuItem1" text="Open file online" onClick={OpenFileListOnline} >
+            <select data-size="5" id="MenuItem1" text="Open file online" onClick={OpenFileListOnline} >
             　<option value="Taipei">Open file online</option>
             　
             </select>

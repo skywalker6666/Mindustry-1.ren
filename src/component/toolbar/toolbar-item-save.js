@@ -4,6 +4,7 @@ import React from "react";
 import { exportToFirebase } from "../../utils";
 import { loadFileNameFromFirebase } from "../../utils";
 import { returnNodeName } from "../../utils";
+var global_title;
 export function ToolbarItemSave(props) {
   const onClickSaveJson = e => {
     const { diagram } = props;
@@ -20,12 +21,15 @@ export function ToolbarItemSave(props) {
      });
     exportToFirebase(`${title}`,jsonExport);
     returnNodeName(`${title}`);
-    
+    global_title=`${title}`;
   };
 
   return (
     <div className={cx("bm-toolbar-item", iconClassName("save"))} onClick={onClickSaveJson}>      
     </div>
   );
+}
+export function getTitle(){
+  return global_title;
 }
 
