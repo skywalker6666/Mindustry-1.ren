@@ -55,7 +55,6 @@ export function returnNodeName(map_name){
       
     }
     
-
   }
   );
   return(i);
@@ -72,7 +71,6 @@ export function returnNoteContent(map_name){
         i=snapshot2.val()[x].blocks[1].data;
         console.log(i);
       }
-      
     }
     
 
@@ -80,6 +78,16 @@ export function returnNoteContent(map_name){
   );
   return(i);
 }
+export function returnDiagramAsJSON(map_name){
+  var x;
+  db.ref('/mindmap/'+map_name).on('value',function(mapJSON){
+    x=mapJSON.val();
+    
+    }
+  );
+  return(x);
+}
+
 export function generateSimpleModel() {
   const rootKey = createKey();
 
