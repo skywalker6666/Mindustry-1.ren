@@ -9,7 +9,7 @@ import { Toolbar } from "./toolbar/toolbar";
 import { generateSimpleModel } from "../utils";
 import "@blink-mind/renderer-react/lib/main.css";
 import debug from "debug";
-
+import Cookies from 'js-cookie';
 const log = debug("app");
 
 const plugins = [
@@ -51,6 +51,7 @@ export class Mindmap extends React.Component {
   };
 
   renderDiagram() {
+    
     return (
       <Diagram
         ref={this.diagramRef}

@@ -5,7 +5,10 @@ import { returnDiagramAsJSON } from "../../utils";
 import { Menu, MenuDivider, MenuItem, Popover } from "@blueprintjs/core";
 import {generateSimpleModel} from "../../utils";
 import {Mindmap} from "../mindmap";
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+cookies.set('myCat', 'Pacman', { path: '/' });
+console.log(cookies.get('myCat')); // Pacman
 export function ToolbarItemOpen(props) {
   const onClickOpenFileFromDesktop = e => {
     const { diagram } = props;
