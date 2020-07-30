@@ -1,0 +1,70 @@
+{
+  "_from": "@blink-mind/renderer-react@0.0.20-beta.6",
+  "_id": "@blink-mind/renderer-react@0.0.20-beta.6",
+  "_inBundle": false,
+  "_integrity": "sha512-qiwfbbg5+5yzigYh/0zRE6oDURal02piJI5FKDc5yq0AYV6DbSo7huxMxDY/TtAhm20bQHbw0QRnbTv1Si95+A==",
+  "_location": "/@blink-mind/renderer-react",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@blink-mind/renderer-react@0.0.20-beta.6",
+    "name": "@blink-mind/renderer-react",
+    "escapedName": "@blink-mind%2frenderer-react",
+    "scope": "@blink-mind",
+    "rawSpec": "0.0.20-beta.6",
+    "saveSpec": null,
+    "fetchSpec": "0.0.20-beta.6"
+  },
+  "_requiredBy": [
+    "/",
+    "/@blink-mind/plugin-rich-text-editor",
+    "/@blink-mind/plugin-theme-selector",
+    "/@blink-mind/plugin-topology-diagram",
+    "/@blink-mind/plugins"
+  ],
+  "_resolved": "https://registry.npmjs.org/@blink-mind/renderer-react/-/renderer-react-0.0.20-beta.6.tgz",
+  "_shasum": "c9283cfae84a303539a97a1f2ea17a962fe4482c",
+  "_spec": "@blink-mind/renderer-react@0.0.20-beta.6",
+  "_where": "C:\\Users\\USER\\Desktop\\react-mindmap-master",
+  "bundleDependencies": false,
+  "dependencies": {
+    "@blink-mind/core": "^0.0.20-beta.6",
+    "@blink-mind/icons": "^0.0.20-beta.6",
+    "@blink-mind/plugin-simple-text-editor": "^0.0.20-beta.6",
+    "@blueprintjs/core": "^3.19.1",
+    "@blueprintjs/select": "^3.11.1",
+    "classnames": "^2.2.6",
+    "css-shorthand-expand": "^1.2.0",
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.15",
+    "memoize-one": "^5.1.1",
+    "react-color": "^2.17.3",
+    "resize-observer-polyfill": "^1.5.1",
+    "styled-components": "^4.4.0",
+    "tiny-invariant": "^1.0.6",
+    "tiny-warning": "^1.0.3"
+  },
+  "deprecated": false,
+  "description": "The default rendering implementation that based on react for blink-mind.",
+  "files": [
+    "lib/"
+  ],
+  "gitHead": "3dcacccc4d71352f8c2560b48f4f94fd324cbd7b",
+  "license": "MIT",
+  "main": "lib/main.js",
+  "module": "lib/main.es.js",
+  "name": "@blink-mind/renderer-react",
+  "peerDependencies": {
+    "debug": "*",
+    "memoize-one": "*",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "umd": "dist/main.js",
+  "version": "0.0.20-beta.6"
+}
