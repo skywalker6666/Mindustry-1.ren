@@ -1,7 +1,7 @@
 import React from "react";
 import { OpType } from "@blink-mind/core";
 import { FOCUS_MODE_SEARCH } from "@blink-mind/plugins";
-import { iconClassName, IconName } from "@blink-mind/renderer-react";
+import { iconClassName, IconName } from "../../../renderer-react/lib/main.es";
 
 export function ToolbarItemSearch(props) {
   const onClickSearch = e => {

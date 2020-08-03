@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { iconClassName } from "@blink-mind/renderer-react";
+import { iconClassName } from "../../../renderer-react/lib/main.es.js";
 import { Menu, MenuDivider, MenuItem, Popover } from "@blueprintjs/core";
 import React from "react";
 import { downloadFile } from "../../utils";

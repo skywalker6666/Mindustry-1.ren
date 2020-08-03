@@ -1,5 +1,5 @@
 import React from "react";
-import { iconClassName, browserOpenFile } from "@blink-mind/renderer-react";
+import { iconClassName, browserOpenFile } from "../../../renderer-react/lib/main.es.js";
 import { loadFileNameFromFirebase } from "../../utils";
 import { returnDiagramAsJSON } from "../../utils";
 import { Menu, MenuDivider, MenuItem, Popover } from "@blueprintjs/core";

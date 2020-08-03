@@ -71,9 +71,8 @@ import {
     clone,
     isEqual
 } from 'lodash';
-import { returnNodeName } from "../../../../src/utils";
-import { returnNoteContent } from "../../../../src/utils";
-import {getTitle}from"../../../../src/component/toolbar/toolbar-item-save";
+import { returnNodeName,returnNoteContent } from "../../src/utils";
+import {getTitle}from"../../src/component/toolbar/toolbar-item-save";
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
