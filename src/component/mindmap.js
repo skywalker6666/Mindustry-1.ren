@@ -1,5 +1,5 @@
 import React from "react";
-import { Diagram } from "../../renderer-react/lib/main.es";
+import { Diagram } from "@blink-mind/renderer-react";
 import RichTextEditorPlugin from "@blink-mind/plugin-rich-text-editor";
 import { JsonSerializerPlugin } from "@blink-mind/plugin-json-serializer";
 import { ThemeSelectorPlugin } from "@blink-mind/plugin-theme-selector";
@@ -7,7 +7,7 @@ import TopologyDiagramPlugin from "@blink-mind/plugin-topology-diagram";
 import { TopicReferencePlugin, SearchPlugin } from "@blink-mind/plugins";
 import { Toolbar } from "./toolbar/toolbar";
 import { generateSimpleModel } from "../utils";
-import "../../renderer-react/lib/main.css";
+import "@blink-mind/renderer-react";
 import debug from "debug";
 import Cookies from 'js-cookie';
 const log = debug("app");

@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { iconClassName } from "../../../renderer-react/lib/main.es.js";
+import { iconClassName } from "@blink-mind/renderer-react";
 import React from "react";
 import { exportToFirebase } from "../../utils";
 import { loadFileNameFromFirebase } from "../../utils";
