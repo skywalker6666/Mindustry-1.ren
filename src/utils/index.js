@@ -27,13 +27,16 @@ export function exportToFirebase (title,data){
 };
 export function loadFileNameFromFirebase(){
   var filename_object=[];
-  var x;  
+  var x;
+  
   const fetchData=db.ref('/');
   // fetchData.off();   
   fetchData.on('value',function(snapshot){    
+    
     for(x in snapshot.val()){
       filename_object=Object.keys(snapshot.val()[x]);
-    }    
+    }
+    
   });
   return(filename_object);
 }
@@ -48,9 +51,12 @@ export function returnNodeName(map_name){
       if(focusKey===snapshot2.val()[x].key){
         i=snapshot2.val()[x].blocks[0].data;
         console.log(i);
-      }      
-    }    
-  });
+      }
+      
+    }
+    
+  }
+  );
   return(i);
 }
 export function returnNoteContent(map_name){
@@ -66,7 +72,10 @@ export function returnNoteContent(map_name){
         console.log(i);
       }
     }
-  });
+    
+
+  }
+  );
   return(i);
 }
 export function returnDiagramAsJSON(map_name){
@@ -87,7 +96,7 @@ export function generateSimpleModel() {
     topics: [
       {
         key: rootKey,
-        blocks: [{ type: "CONTENT", data: "New Topic" }]
+        blocks: [{ type: "CONTENT", data: "Mindustry" }]
       }
     ]
   });
