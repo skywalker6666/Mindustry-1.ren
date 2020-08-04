@@ -1,6 +1,8 @@
 import { Model, createKey } from "@blink-mind/core";
 import firebase from'firebase';
-
+import { browserOpenFile ,browserUploadFile} from "@blink-mind/renderer-react/lib/main";
+import axios from "axios";
+import React,{Component} from 'react'; 
 export const downloadFile = (url, filename) => {
   const link = document.createElement("a");
   link.href = url;
@@ -51,12 +53,9 @@ export function returnNodeName(map_name){
       if(focusKey===snapshot2.val()[x].key){
         i=snapshot2.val()[x].blocks[0].data;
         console.log(i);
-      }
-      
-    }
-    
-  }
-  );
+      }      
+    }    
+  });
   return(i);
 }
 export function returnNoteContent(map_name){
@@ -72,19 +71,14 @@ export function returnNoteContent(map_name){
         console.log(i);
       }
     }
-    
-
-  }
-  );
+  });
   return(i);
 }
 export function returnDiagramAsJSON(map_name){
   var x;
   db.ref('/mindmap/'+map_name).on('value',function(mapJSON){
-    x=mapJSON.val();
-    
-    }
-  );
+    x=mapJSON.val();    
+    });
   return(x);
 }
 
@@ -100,4 +94,48 @@ export function generateSimpleModel() {
       }
     ]
   });
+}
+// Points to the root reference
+
+
+
+var filename ;
+var storageRef = firebase.storage().ref('/files/');
+export  function UploadFiles() {   
+  const state = { 
+  
+    // Initially, no file is selected 
+    selectedFile: null
+  }; 
+  var file;
+  browserUploadFile(".pdf,.txt").then(event => {
+    
+    // const file = event.target.files[0];
+        
+    const task =storageRef.put(event);
+    HTMLFormControlsCollection.log(event);
+  });
+  // const onFileUpload = () => { 
+  //   // Create an object of formData 
+  //   const formData = new FormData(); 
+   
+  //   // Update the formData object 
+  //   formData.append( 
+  //     "myFile", 
+  //     this.state.selectedFile, 
+  //     this.state.selectedFile.name 
+  //   ); 
+  //   file=formData;
+  //  filename=this.state.selectedFile.name;
+  //   // Details of the uploaded file 
+  //   console.log(this.state.selectedFile); 
+   
+  //   // Request made to the backend api 
+  //   // Send formData object 
+  //   axios.post("api/uploadfile", formData); 
+  // }; 
+ 
+  // // File content to be displayed after 
+  // // file upload is complete 
+ 
 }
