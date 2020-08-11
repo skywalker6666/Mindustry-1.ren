@@ -16,7 +16,7 @@ export function ToolbarItemOpen(props) {
     const diagramProps = diagram.getDiagramProps();
     const { controller } = diagramProps;
     var obj={"rootTopicKey":"ded670e2-5635-4438-80f8-981d40e6451b","editorRootTopicKey":"ded670e2-5635-4438-80f8-981d40e6451b","focusKey":"ded670e2-5635-4438-80f8-981d40e6451b","extData":{},"topics":[{"key":"ded670e2-5635-4438-80f8-981d40e6451b","parentKey":null,"subKeys":[],"collapse":false,"style":null,"blocks":[{"type":"CONTENT","data":"New Topic"}]}],"config":{"readOnly":false,"allowUndo":true,"layoutDir":2,"theme":{"name":"default","randomColor":true,"background":"rgb(57,60,65)","highlightColor":"#50C9CE","marginH":60,"marginV":20,"contentStyle":{"lineHeight":"1.5"},"linkStyle":{"lineRadius":5,"lineType":"curve","lineWidth":"3px"},"rootTopic":{"contentStyle":{"fontSize":"34px","borderRadius":"35px","padding":"16px 18px 16px 18px"},"subLinkStyle":{"lineType":"curve","lineWidth":"3px","lineColor":"rgb(113, 203, 45)"}},"primaryTopic":{"contentStyle":{"borderWidth":"1px","borderStyle":"solid","borderRadius":"20px","fontSize":"17px","padding":"10px 15px 10px 15px"},"subLinkStyle":{"lineType":"curve","lineWidth":"3px","lineColor":"rgb(113, 203, 45)"}},"normalTopic":{"contentStyle":{"border":"1px solid #e8eaec","borderRadius":"20px","fontSize":"17px","padding":"4px 10px"},"subLinkStyle":{"lineType":"curve","lineWidth":"3px","lineColor":"white"}}}},"formatVersion":null}
-    //暫時的辦法
+    ///暫時的辦法
     let model = controller.run("deserializeModel", { controller, obj});
      diagram.openNewModel(model);
   };
