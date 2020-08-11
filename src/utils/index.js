@@ -102,18 +102,18 @@ export function generateSimpleModel() {
 var filename ;
 var storageRef = firebase.storage().ref('/files/');
 export  function UploadFiles() {   
-  const state = { 
-  
-    // Initially, no file is selected 
-    selectedFile: null
-  }; 
-  var file;
-  browserUploadFile(".pdf,.txt").then(event => {
+    const state = { 
     
-    // const file = event.target.files[0];
-        
-    const task =storageRef.put(event);
-    HTMLFormControlsCollection.log(event);
+      // Initially, no file is selected 
+      selectedFile: null
+    }; 
+    var file;
+    browserUploadFile(".pdf,.txt").then(event => {
+      
+      // const file = event.target.files[0];
+          
+      const task =storageRef.put(event);
+      HTMLFormControlsCollection.log(event);
   });
   // const onFileUpload = () => { 
   //   // Create an object of formData 

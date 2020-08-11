@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { iconClassName } from "@blink-mind/renderer-react";
+import { iconClassName,IconName } from "@blink-mind/renderer-react";
 import { Menu, MenuDivider, MenuItem, Popover } from "@blueprintjs/core";
 import React from "react";
 import { downloadFile } from "../../utils";
@@ -23,7 +23,7 @@ export function ToolbarItemExport(props) {
     };
     
   return (
-    <div className={cx("bm-toolbar-item",  `${iconClassName("export")}`)}>
+    <div className={cx("bm-toolbar-item" ,`${iconClassName("export")}`)}>
       <Popover enforceFocus={false}>
         <div className="bm-toolbar-popover-target" />
         <Menu>
