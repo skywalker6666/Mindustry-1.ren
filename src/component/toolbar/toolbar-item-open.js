@@ -20,6 +20,7 @@ export function ToolbarItemOpen(props) {
     let model = controller.run("deserializeModel", { controller, obj});
      diagram.openNewModel(model);
   };
+  
   const onClickOpenFileFromDesktop = e => {
     const { diagram } = props;
     const diagramProps = diagram.getDiagramProps();
