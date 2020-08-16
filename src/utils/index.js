@@ -27,6 +27,25 @@ export function exportToFirebase (title,data){
   db.ref('/mindmap/'+title).update(data);
   //db.ref('/mindmap/AI').push(data);
 };
+export function exportQuestionToFirebase (title,data){   
+  db.ref('/mindmap/'+title+'/topics/').update(data);
+};
+export function exportAnswerToFirebase (title,data){   
+  db.ref('/mindmap/'+title+'/topics/0/').update(data);
+};
+
+export function exportSubconceptTitleToFirebase (title,data,nodeNum){ 
+  var json_export; 
+  db.ref('/mindmap/'+title+'/topics/'+nodeNum+'/subConcepts/').update({subcontentTitle:data});
+  // db.ref('/mindmap/'+title).on('value',function(snapshot){
+  //   json_export=snapshot.val();
+  // });
+  // return json_export
+};
+
+export function exportSubconceptContentToFirebase (title,data){   
+  db.ref('/mindmap/'+title+'/topics/').update(data);
+};
 export function loadFileNameFromFirebase(){
   var filename_object=[];
   var x;
@@ -42,16 +61,15 @@ export function loadFileNameFromFirebase(){
   });
   return(filename_object);
 }
-export function returnNodeName(map_name){
-  var i=[];
-  var focusKey;
-  db.ref('/mindmap/'+map_name+'/focusKey').on('value',function(snapshot){ focusKey=snapshot.val();});
-  db.ref('/mindmap/'+map_name+'/topics/').on('value',function(snapshot2){
-    for(var x in snapshot2.val()){
+
+export function returnNodeNumber(map_name,node_name){
+  var i;  
+  db.ref('/mindmap/'+map_name+'/topics/').on('value',function(snapshot){
+    for(var x in snapshot.val()){
     //   console.log(snapshot.val());
     // console.log(snapshot.val()[x].blocks[0].data);
-      if(focusKey===snapshot2.val()[x].key){
-        i=snapshot2.val()[x].blocks[0].data;
+      if(snapshot.val()[x].blocks[0].data===node_name){
+        i=x;
         console.log(i);
       }      
     }    
@@ -78,8 +96,8 @@ export function returnDiagramAsJSON(map_name){
   var x;
   db.ref('/mindmap/'+map_name).on('value',function(mapJSON){
     x=mapJSON.val();    
-    });
-  return(x);
+  });
+  return x;
 }
 
 export function generateSimpleModel() {
