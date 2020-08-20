@@ -23,6 +23,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);  
 var db=firebase.database();
 
+//輸出整張map的json到資料庫
 export function exportToFirebase (title,data){   
   db.ref('/mindmap/'+title).update(data);
   //db.ref('/mindmap/AI').push(data);
@@ -42,8 +43,23 @@ export function exportSubconceptTitleToFirebase (title,data,nodeNum){
   // });
   // return json_export
 };
+export function loadSubconceptTitleFromFirebase (map_title,key){ 
+  var subconceptTitle=null;
+  db.ref('/mindmap/'+map_title+'/topics/').on('value',function(topics){
+    
+    for(var x in topics.val()){      
+        if(topics.val()[x].key===key){
+          subconceptTitle=topics.val()[x].subConcepts.subcontentTitle;
+        }      
+      }    
+  });
+  return subconceptTitle;
+};
 
 export function exportSubconceptContentToFirebase (title,data){   
+  db.ref('/mindmap/'+title+'/topics/').update(data);
+};
+export function loadSubconceptContentFromFirebase (title,data){   
   db.ref('/mindmap/'+title+'/topics/').update(data);
 };
 export function loadFileNameFromFirebase(){
@@ -53,13 +69,11 @@ export function loadFileNameFromFirebase(){
   const fetchData=db.ref('/');
   // fetchData.off();   
   fetchData.on('value',function(snapshot){    
-    
     for(x in snapshot.val()){
       filename_object=Object.keys(snapshot.val()[x]);
     }
-    
   });
-  return(filename_object);
+  return filename_object;
 }
 
 export function returnNodeNumber(map_name,node_name){
@@ -76,22 +90,7 @@ export function returnNodeNumber(map_name,node_name){
   });
   return(i);
 }
-export function returnNoteContent(map_name){
-  var i=[];
-  var focusKey;
-  db.ref('/mindmap/'+map_name+'/focusKey').on('value',function(snapshot){ focusKey=snapshot.val();});
-  db.ref('/mindmap/'+map_name+'/topics/').on('value',function(snapshot2){
-    for(var x in snapshot2.val()){
-    //   console.log(snapshot.val());
-    // console.log(snapshot.val()[x].blocks[0].data);
-      if(focusKey===snapshot2.val()[x].key){
-        i=snapshot2.val()[x].blocks[1].data;
-        console.log(i);
-      }
-    }
-  });
-  return(i);
-}
+
 export function returnDiagramAsJSON(map_name){
   var x;
   db.ref('/mindmap/'+map_name).on('value',function(mapJSON){
@@ -99,6 +98,14 @@ export function returnDiagramAsJSON(map_name){
   });
   return x;
 }
+//export function deleteMap(map_name){
+//   var x;
+//   db.ref('/mindmap/'+map_name).delete('value',function(mapJSON){
+//     x=mapJSON.val();    
+//   });
+//   return x;
+// }
+
 
 export function generateSimpleModel() {
   const rootKey = createKey();
@@ -108,7 +115,7 @@ export function generateSimpleModel() {
     topics: [
       {
         key: rootKey,
-        blocks: [{ type: "CONTENT", data: "Mindustry" }]
+        blocks: [{ type: "CONTENT", data: "New Topic" }]
       }
     ]
   });

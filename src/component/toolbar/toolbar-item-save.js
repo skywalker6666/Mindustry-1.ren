@@ -4,7 +4,9 @@ import React from "react";
 import { exportToFirebase, exportSubconceptTitleToFirebase ,returnDiagramAsJSON,returnNodeNumber} from "../../utils";
 import { loadFileNameFromFirebase } from "../../utils";
 import {ReturnSubcontentTitle,ReturnNodeName} from "../../../node_modules/@blink-mind/renderer-react/lib/main.es"
-var global_title,jsonExport;
+var global_mapTitle,jsonExport;
+var global_subconceptTitle;
+var global_nodeNum;
 export function ToolbarItemSave(props) {
   const onClickSaveJson = e => {
     const { diagram } = props;
@@ -16,24 +18,32 @@ export function ToolbarItemSave(props) {
         });
     
     //metadata存取用
-    var mapTitle=`${title}`;
-    var subconceptTitle=ReturnSubcontentTitle();
+    global_mapTitle=`${title}`;
+    global_subconceptTitle=ReturnSubcontentTitle();
     var nodeName=ReturnNodeName();
-    var nodeNum=returnNodeNumber(mapTitle,nodeName);
+    global_nodeNum=returnNodeNumber(global_mapTitle,nodeName);
     
+    console.log("global_subconceptTitle:"+global_subconceptTitle)
+
     const json = controller.run("serializeModel", diagramProps);
     const jsonStr = JSON.stringify(json);
-    jsonExport = JSON.parse(jsonStr);    
-    // exportToFirebase(`${title}`,jsonExport);//匯出整張map的json
-    exportSubconceptTitleToFirebase(mapTitle,subconceptTitle,nodeNum);
-    const jsonExport_newset=returnDiagramAsJSON(mapTitle);
-    exportToFirebase(`${title}`,jsonExport_newset);//匯出整張更新過metadatamap的json
+    jsonExport = JSON.parse(jsonStr); 
+    if(global_subconceptTitle==null){   
+      console.log("上面");
+      exportToFirebase(`${title}`,jsonExport);//匯出整張map的json，註解掉可以幫助subconcept分次增加多個成功
+    }
+    else{
+      console.log("下面");
+      exportSubconceptTitleToFirebase(global_mapTitle,global_subconceptTitle,global_nodeNum);
+      const jsonExport_newset=returnDiagramAsJSON(global_mapTitle);
+      exportToFirebase(`${title}`,jsonExport_newset);//匯出整張更新過metadatamap的json
+    }
 
 
 
 
+    
 
-    global_title=`${title}`;
   };
 
   return (
@@ -44,7 +54,9 @@ export function ToolbarItemSave(props) {
 
 
 export function getTitle(){
-  exportToFirebase(global_title,jsonExport);
-  return global_title;
+  return global_mapTitle;
 }
-
+export function getUpdatedSubconceptTitleCondition(){
+  var title_and_nodenum=[global_mapTitle,global_nodeNum];
+  return title_and_nodenum;
+}
