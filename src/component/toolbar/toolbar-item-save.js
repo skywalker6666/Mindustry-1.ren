@@ -1,11 +1,11 @@
 import cx from "classnames";
 import { iconClassName, IconName } from "@blink-mind/renderer-react";
 import React from "react";
-import { exportToFirebase, exportSubconceptTitleToFirebase ,returnDiagramAsJSON,returnNodeNumber} from "../../utils";
+import { exportToFirebase, exportSubconceptTitleToFirebase, exportSubconceptAnswerToFirebase,exportSubconceptQuestionToFirebase,returnDiagramAsJSON,returnNodeNumber, exportSubconceptContentToFirebase} from "../../utils";
 import { loadFileNameFromFirebase } from "../../utils";
-import {ReturnSubcontentTitle,ReturnNodeName} from "../../../node_modules/@blink-mind/renderer-react/lib/main.es"
+import {ReturnSubcontentTitle,ReturnNodeName,ReturnSubcontentAnswer,ReturnSubcontentQuestion,ReturnSubconceptContent} from "../../../node_modules/@blink-mind/renderer-react/lib/main.es"
 var global_mapTitle,jsonExport;
-var global_subconceptTitle;
+var global_subconceptTitle,global_subconceptQuestion,global_subconceptAnswer,global_subconceptContent;
 var global_nodeNum;
 export function ToolbarItemSave(props) {
   const onClickSaveJson = e => {
@@ -20,6 +20,9 @@ export function ToolbarItemSave(props) {
     //metadata存取用
     global_mapTitle=`${title}`;
     global_subconceptTitle=ReturnSubcontentTitle();
+    global_subconceptContent=ReturnSubconceptContent();
+    global_subconceptQuestion=ReturnSubcontentQuestion();
+    global_subconceptAnswer=ReturnSubcontentAnswer();
     var nodeName=ReturnNodeName();
     global_nodeNum=returnNodeNumber(global_mapTitle,nodeName);
     
@@ -35,6 +38,9 @@ export function ToolbarItemSave(props) {
     else{
       console.log("下面");
       exportSubconceptTitleToFirebase(global_mapTitle,global_subconceptTitle,global_nodeNum);
+      exportSubconceptQuestionToFirebase(global_mapTitle,global_subconceptQuestion,global_nodeNum);
+      exportSubconceptAnswerToFirebase(global_mapTitle,global_subconceptAnswer,global_nodeNum);
+      exportSubconceptContentToFirebase(global_mapTitle,global_subconceptContent,global_nodeNum);
       const jsonExport_newset=returnDiagramAsJSON(global_mapTitle);
       exportToFirebase(`${title}`,jsonExport_newset);//匯出整張更新過metadatamap的json
     }

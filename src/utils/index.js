@@ -28,40 +28,74 @@ export function exportToFirebase (title,data){
   db.ref('/mindmap/'+title).update(data);
   //db.ref('/mindmap/AI').push(data);
 };
-export function exportQuestionToFirebase (title,data){   
-  db.ref('/mindmap/'+title+'/topics/').update(data);
+
+export function exportSubconceptTitleToFirebase (title,data,nodeNum){  
+  db.ref('/mindmap/'+title+'/topics/'+nodeNum+'/subConcepts/').update({subconceptTitle:data});
 };
-export function exportAnswerToFirebase (title,data){   
-  db.ref('/mindmap/'+title+'/topics/0/').update(data);
+export function exportSubconceptContentToFirebase (title,data,nodeNum){  
+  db.ref('/mindmap/'+title+'/topics/'+nodeNum+'/subConcepts/').update({subconceptContent:data});
+};
+export function exportSubconceptQuestionToFirebase (title,data,nodeNum){   
+  db.ref('/mindmap/'+title+'/topics/'+nodeNum+'/subConcepts/').update({subconceptQuestion:data}); 
 };
 
-export function exportSubconceptTitleToFirebase (title,data,nodeNum){ 
-  var json_export; 
-  db.ref('/mindmap/'+title+'/topics/'+nodeNum+'/subConcepts/').update({subcontentTitle:data});
-  // db.ref('/mindmap/'+title).on('value',function(snapshot){
-  //   json_export=snapshot.val();
-  // });
-  // return json_export
+export function exportSubconceptAnswerToFirebase (title,data,nodeNum){ 
+  db.ref('/mindmap/'+title+'/topics/'+nodeNum+'/subConcepts/').update({subconceptAnswer:data});  
 };
+
 export function loadSubconceptTitleFromFirebase (map_title,key){ 
   var subconceptTitle=null;
   db.ref('/mindmap/'+map_title+'/topics/').on('value',function(topics){
     
     for(var x in topics.val()){      
         if(topics.val()[x].key===key){
-          subconceptTitle=topics.val()[x].subConcepts.subcontentTitle;
+          subconceptTitle=topics.val()[x].subConcepts.subconceptTitle;
         }      
       }    
   });
   return subconceptTitle;
 };
+export function loadSubconceptQuestionFromFirebase (map_title,key){ 
+  var subconceptQuestion=null;
+  db.ref('/mindmap/'+map_title+'/topics/').on('value',function(topics){
+    
+    for(var x in topics.val()){      
+        if(topics.val()[x].key===key){
+          subconceptQuestion=topics.val()[x].subConcepts.subconceptQuestion;
+        }      
+      }    
+  });
+  return subconceptQuestion;
+};
+export function loadSubconceptAnswerFromFirebase (map_title,key){ 
+  var subconceptAnswer=null;
+  db.ref('/mindmap/'+map_title+'/topics/').on('value',function(topics){
+    
+    for(var x in topics.val()){      
+        if(topics.val()[x].key===key){
+          subconceptAnswer=topics.val()[x].subConcepts.subconceptAnswer;
+        }      
+      }    
+  });
+  return subconceptAnswer;
+};
+export function loadSubconceptContentFromFirebase (map_title,key){ 
+  var subconceptContent=null;
+  db.ref('/mindmap/'+map_title+'/topics/').on('value',function(topics){
+    
+    for(var x in topics.val()){      
+        if(topics.val()[x].key===key){
+          subconceptContent=topics.val()[x].subConcepts.subconceptContent;
+        }      
+      }    
+  });
+  return subconceptContent;
+};
 
-export function exportSubconceptContentToFirebase (title,data){   
-  db.ref('/mindmap/'+title+'/topics/').update(data);
-};
-export function loadSubconceptContentFromFirebase (title,data){   
-  db.ref('/mindmap/'+title+'/topics/').update(data);
-};
+
+
+
+///
 export function loadFileNameFromFirebase(){
   var filename_object=[];
   var x;
