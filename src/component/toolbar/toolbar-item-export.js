@@ -23,7 +23,7 @@ export function ToolbarItemExport(props) {
     };
     
   return (
-    <div className={cx("bm-toolbar-item" ,`${iconClassName("show-menu")}`)}>
+    <div className={cx("bm-toolbar-item" ,`${iconClassName("export")}`)}>
       <Popover enforceFocus={false}>
         <div className="bm-toolbar-popover-target" />
         <Menu>

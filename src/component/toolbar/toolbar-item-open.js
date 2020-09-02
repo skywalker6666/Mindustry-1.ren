@@ -11,6 +11,20 @@ cookies.set('myCat', 'Pacman', { path: '/' });
 console.log(cookies.get('myCat')); // Pacman
 
 export function ToolbarItemOpen(props) {
+  var map_name=[];
+  const onClickLoadMapTitle=e=>{
+    map_name= loadFileNameFromFirebase();
+    console.log(map_name);
+    var x = document.getElementById('MenuItem1');
+    //  x.innerHTML = "<select id='MenuItem1'  text='Choose file' onChange={getValue} onClick={OpenFileListOnline} >　<option value='Open file online' >Open file online</option>";
+ 
+  
+    for(var t in map_name){
+      x.innerHTML  +="<option value='"+map_name[t]+"'id='"+map_name[t]+"'>"+map_name[t]+"</option>";
+      }
+  }
+  
+
   const createNewFile=e=>{
     const { diagram } = props;
     const diagramProps = diagram.getDiagramProps();
@@ -36,22 +50,12 @@ export function ToolbarItemOpen(props) {
     const { diagram } = props;
     const diagramProps = diagram.getDiagramProps();
     const { controller } = diagramProps; 
-    var map_name=[];
-    map_name= loadFileNameFromFirebase();    
-    var x = document.getElementById('MenuItem1');
-    x.innerHTML = "<select id='MenuItem1'  text='Choose file' onChange={getValue} onClick={OpenFileListOnline} >　<option value='Open file online' >Open file online</option>";
- 
-  
-    for(var t in map_name){
-      
-      x.innerHTML += "<option value='"+map_name[t]+"'id='"+map_name[t]+"'>"+map_name[t]+"</option>";
-      
-    }
+        
+    
     
   };
   const getValue= e => {
-    var map_name=[],t;
-    map_name= loadFileNameFromFirebase();
+    var t;
     for( t in map_name){
       var title=document.getElementById("MenuItem1").value;
       document.getElementById("map_title").value=title;//將檔名顯示在input box
@@ -70,18 +74,17 @@ export function ToolbarItemOpen(props) {
     diagram.openNewModel(model);
   };
   return (
-    <div className={`bm-toolbar-item ${iconClassName("openfile")}`}  >
+    <div className={`bm-toolbar-item ${iconClassName("openfile")}`} onClick={onClickLoadMapTitle} >
 
       <Popover enforceFocus={false}>
         <div className="bm-toolbar-popover-target" />
         <Menu>
-
           <MenuItem text="Create new file" onClick={createNewFile} />
           <MenuDivider/>
           <MenuItem text="Open file from desktop" onClick={onClickOpenFileFromDesktop} />
           <MenuDivider/>
           <form>
-            <select  id="MenuItem1"  text="Choose file" onChange={getValue} onClick={OpenFileListOnline} >
+            <select  id="MenuItem1"  text="Choose file" onChange={getValue}  >
             　<option value="Open file online" >Open file online</option>
             </select>
             <input id="map_title"></input>

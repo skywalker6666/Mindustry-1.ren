@@ -3,7 +3,8 @@ import Mindmap from "./component/mindmap";
 import "./App.css";
 
 function App() {
-  return <Mindmap />;
+  return <Mindmap/>       
+  ;
 }
 
 export default App;

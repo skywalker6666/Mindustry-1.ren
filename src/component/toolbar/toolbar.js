@@ -18,7 +18,7 @@ export class Toolbar extends React.PureComponent {
     const { onClickUndo, onClickRedo, canUndo, canRedo } = props;
 
     return (
-      <div className="bm-toolbar">
+      <>
         <ToolbarItemOpen {...props} />
         <ToolbarItemExport {...props} />
         <ToolbarItemSave {...props} />
@@ -39,7 +39,7 @@ export class Toolbar extends React.PureComponent {
           })}
           onClick={onClickRedo}
         />
-      </div>
+      </>
     );
   }
 }

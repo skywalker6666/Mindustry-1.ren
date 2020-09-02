@@ -22,8 +22,12 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);  
 var db=firebase.database();
-
+// var db2=firebase.store();
+// export function exportToFirestore (data){   
+//   db2.collection('mindustry').doc('Alan的Mindustry').update(data);
+// };
 //輸出整張map的json到資料庫
+
 export function exportToFirebase (title,data){   
   db.ref('/mindmap/'+title).update(data);
   //db.ref('/mindmap/AI').push(data);
@@ -99,14 +103,15 @@ export function loadSubconceptContentFromFirebase (map_title,key){
 export function loadFileNameFromFirebase(){
   var filename_object=[];
   var x;
-  
-  const fetchData=db.ref('/');
-  // fetchData.off();   
-  fetchData.on('value',function(snapshot){    
+  var i=0;
+  db.ref('/mindmap/').on('value',function(snapshot){    
     for(x in snapshot.val()){
-      filename_object=Object.keys(snapshot.val()[x]);
+      filename_object[i]=snapshot.val()[x].topics[0].blocks[0].data;
+      i++;
+      console.log("第一時間:"+filename_object);
     }
   });
+  
   return filename_object;
 }
 
