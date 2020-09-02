@@ -7,6 +7,9 @@ import TopologyDiagramPlugin from "@blink-mind/plugin-topology-diagram";
 import { TopicReferencePlugin, SearchPlugin } from "@blink-mind/plugins";
 import { Toolbar } from "./toolbar/toolbar";
 import { generateSimpleModel } from "../utils";
+import { ModalExample,CollapseExample } from "./metadata/AddSubconcept";
+import {TabExample} from "./buffer/BufferTab";
+
 import "@blink-mind/renderer-react";
 import debug from "debug";
 import Cookies from 'js-cookie';
@@ -76,6 +79,13 @@ export class Mindmap extends React.Component {
     };
     return <Toolbar {...toolbarProps} />;
   }
+  renderMetadata(){
+    return <ModalExample></ModalExample>;
+  }
+  renderBuffer(){
+    return <TabExample></TabExample>;
+    
+  }
 
   onChange = (model, callback) => {
     this.setState(
@@ -88,10 +98,18 @@ export class Mindmap extends React.Component {
 
   render() {
     return (
+     
       <div className="mindmap">
+        {this.renderMetadata()}
         {this.diagram && this.renderToolbar()}
+          
+        {this.renderBuffer()}
         {this.renderDiagram()}
-      </div>
+            
+          
+      </div> 
+      
+
     );
   }
 }

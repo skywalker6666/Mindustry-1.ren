@@ -1,6 +1,15 @@
+
+
 $(document).ready(
-       
-      function movebanner() {
+
+      
+    function allcontroll() {
+        CKEDITOR.replace('content');
+        $("#sendnote").click(function(){
+              // getting data
+              var data = CKEDITOR.instances.content.getData();
+              alert(data);
+             })
         $('#banner').mousedown(
             function (event) {
                 var isMove = true;
@@ -20,4 +29,6 @@ $(document).ready(
             }
         );
       }
+
+      
      );

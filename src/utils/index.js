@@ -178,28 +178,31 @@ export  function UploadFiles() {
           
       const task =storageRef.put(event);
       HTMLFormControlsCollection.log(event);
-  });
-  // const onFileUpload = () => { 
-  //   // Create an object of formData 
-  //   const formData = new FormData(); 
-   
-  //   // Update the formData object 
-  //   formData.append( 
-  //     "myFile", 
-  //     this.state.selectedFile, 
-  //     this.state.selectedFile.name 
-  //   ); 
-  //   file=formData;
-  //  filename=this.state.selectedFile.name;
-  //   // Details of the uploaded file 
-  //   console.log(this.state.selectedFile); 
-   
-  //   // Request made to the backend api 
-  //   // Send formData object 
-  //   axios.post("api/uploadfile", formData); 
-  // }; 
- 
-  // // File content to be displayed after 
-  // // file upload is complete 
- 
+  }); 
+}
+export function UploadFilesToStorage(map_name) {       //上傳檔案到fiebase的storage
+  var storage = firebase.app().storage("gs://test-dd34d.appspot.com");  //storage的url
+  var storageRef = storage.ref('/mindmap/'+map_name);      //資料夾
+//   var metadata = {
+//   contentType: 'image/jpeg',
+// };
+  ;  //儲存在storage的黨名
+
+  browserOpenFile(".txt,.mindustry,.json,.blinkmind,").then(txt => {
+    // this.setState({
+    //   selectedFile: txt.target.files[0],
+    //   loaded: 0,
+    // });
+    storageRef.child(txt+'.txt').putString(txt).then(function(snapshot) {  //putString是上傳原始字符
+      console.log('Uploaded a blob or file!');
+    });
+    console.log(txt);
+    console.log("我在喔");
+    alert("上傳成功");
+    
+    // const file = event.target.files[0];
+        
+    //const task =storageRef.put(event);
+    //HTMLFormControlsCollection.log(event);
+});
 }
