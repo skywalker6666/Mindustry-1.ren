@@ -1,9 +1,8 @@
 
 import React,{ useState } from 'react';
-import { Collapse,TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Collapse,TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,Container } from 'reactstrap';
 import classnames from 'classnames';
 import {UploadFilesToStorage} from '../../utils/index'
-import {PreProcessPanel} from '../../../node_modules/@blink-mind/renderer-react/lib/main.es'
 
 
 export function TabExample (props) {
@@ -18,13 +17,15 @@ export function TabExample (props) {
 
   const uploadFile = () => {UploadFilesToStorage('AI');
   }
-  const createNewNote=()=>{PreProcessPanel(props);
-}
+//   const createNewNote=()=>{
+// }
 
   return (
-    <div>
+    <div >
+
     <Button color="primary" onClick={buttonToggle} style={{ marginBottom: '1rem' }}>FileBuffer</Button>
-      <Collapse isOpen={isOpen}>       
+      <Collapse isOpen={isOpen}>
+            
         <Nav tabs horizontal size='5'>
             <NavItem>
             <NavLink
@@ -62,7 +63,7 @@ export function TabExample (props) {
 
             <TabPane tabId="2">
             <Col>
-                <Button color='secondary' onClick={createNewNote}>+ Note</Button>
+                <Button color='secondary' >+ Note</Button>
 
                 <Col sm="2">
                 <Card body>
@@ -81,7 +82,10 @@ export function TabExample (props) {
             </Col>
             </TabPane>
         </TabContent>
+        
+        
       </Collapse>
-    </div>
+      </div>
+    
   );
 }

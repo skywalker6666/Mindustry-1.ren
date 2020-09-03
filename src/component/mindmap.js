@@ -9,10 +9,13 @@ import { Toolbar } from "./toolbar/toolbar";
 import { generateSimpleModel } from "../utils";
 import { ModalExample,CollapseExample } from "./metadata/AddSubconcept";
 import {TabExample} from "./buffer/BufferTab";
-
+import {FileUploadExample} from "./buffer/FileUpload";
 import "@blink-mind/renderer-react";
 import debug from "debug";
 import Cookies from 'js-cookie';
+import { Collapse,TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,Container } from 'reactstrap';
+
+import { Grid, Image } from 'semantic-ui-react';
 const log = debug("app");
 
 const plugins = [
@@ -56,12 +59,29 @@ export class Mindmap extends React.Component {
   renderDiagram() {
     
     return (
-      <Diagram
+      <>
+      <Grid>
+      
+        <Grid.Column width={5}>
+          
+        </Grid.Column>
+        <Grid.Column width={10}>
+        <Diagram
         ref={this.diagramRef}
         model={this.state.model}
         onChange={this.onChange}
         plugins={plugins}
-      />
+        />
+        </Grid.Column>
+        
+      </Grid>
+       
+      
+      
+      
+     
+      
+      </>
     );
   }
 
@@ -80,7 +100,7 @@ export class Mindmap extends React.Component {
     return <Toolbar {...toolbarProps} />;
   }
   renderMetadata(){
-    return <ModalExample></ModalExample>;
+    return <CollapseExample></CollapseExample>;
   }
   renderBuffer(){
     return <TabExample></TabExample>;
@@ -100,10 +120,10 @@ export class Mindmap extends React.Component {
     return (
      
       <div className="mindmap">
-        {this.renderMetadata()}
+        
         {this.diagram && this.renderToolbar()}
-          
-        {this.renderBuffer()}
+        
+        
         {this.renderDiagram()}
             
           

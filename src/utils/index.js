@@ -188,7 +188,7 @@ export function UploadFilesToStorage(map_name) {       //上傳檔案到fiebase�
 // };
   ;  //儲存在storage的黨名
 
-  browserOpenFile(".txt,.mindustry,.json,.blinkmind,").then(txt => {
+  browserOpenFile(".txt").then(txt => {
     // this.setState({
     //   selectedFile: txt.target.files[0],
     //   loaded: 0,

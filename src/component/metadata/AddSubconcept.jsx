@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,Collapse, CardBody, Card } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,Collapse, CardBody, Card,Container, Row, Col} from 'reactstrap';
 
 
 export function ModalExample(props) {
